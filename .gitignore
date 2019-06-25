@@ -76,13 +76,13 @@ librealsense-log.txt
 *.vcxproj
 *.exe
 *.cache
-*.lib
+# *.lib
 *.filters
 *.db
 *.opendb
 *.rule
 *.check_cache
-*.dll
+# *.dll
 *.list
 *.json
 *.ini

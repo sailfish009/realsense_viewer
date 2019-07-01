@@ -73,7 +73,7 @@ librealsense-log.txt
 *.log
 *.stamp
 *.depend
-*.vcxproj
+# *.vcxproj
 *.exe
 *.cache
 # *.lib

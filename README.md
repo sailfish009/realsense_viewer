@@ -1,9 +1,9 @@
 # realsense_viewer
 real sense viewer standalone source
 
-extracted real sense viewer source from librealsense2 [vs2017 x86 Debug]
+extracted real sense viewer source from librealsense2 [vs2019 x64 Debug | Release]
 
-after build the source code, copy following 2 dll files into Debug/ directory.
+after build the source code, copy following 2 dll files into Debug/Releases directory.
 
-lib/realsense2d.dll
-lib/realsense2-gld.dll
+lib/realsense2[d].dll
+lib/realsense2-gl[d].dll

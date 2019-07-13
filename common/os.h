@@ -4,7 +4,6 @@
 #pragma once
 #include <vector>
 #include <string>
-// #include <rendering.h>
 #include "rendering.h"
 
 struct GLFWmonitor;
@@ -19,6 +18,8 @@ namespace rs2
     std::string truncate_string(const std::string& str, size_t width);
 
     void open_url(const char* url);
+
+    bool directory_exists(const char* dir);
 
     std::vector<std::string> split_string(std::string& input, char delim);
 
@@ -38,8 +39,6 @@ namespace rs2
     enum file_dialog_mode {
         open_file       = (1 << 0),
         save_file       = (1 << 1),
-        open_dir        = (1 << 2),
-        override_file   = (1 << 3)
     };
 
     const char* file_dialog_open(file_dialog_mode flags, const char* filters, const char* default_path, const char* default_name);

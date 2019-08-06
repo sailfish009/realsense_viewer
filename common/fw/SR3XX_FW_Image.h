@@ -1,6 +1,6 @@
 #pragma once
 
-#define FW_SR3XX_FW_IMAGE_VERSION "3.27.3.0"
+#define FW_SR3XX_FW_IMAGE_VERSION "3.26.1.0"
 
 extern "C" const unsigned char fw_SR3XX_FW_Image_data[];
 extern "C" const int           fw_SR3XX_FW_Image_size;

@@ -12,7 +12,7 @@
 #include <regex>
 #include <cmath>
 
-#include "opengl3.h"
+#include <opengl3.h>
 
 #include <librealsense2/rs_advanced_mode.hpp>
 #include <librealsense2/rsutil.h>
@@ -926,6 +926,17 @@ namespace rs2
         }
         catch (...) {}
 
+        auto filters = s->get_recommended_filters();
+        
+        auto it  = std::find_if(filters.begin(), filters.end(), [&](const filter &f)
+        {
+            if (f.is<zero_order_invalidation>())
+                return true;
+            return false;
+        });
+
+        auto is_zo = it != filters.end();
+
         for (auto&& f : s->get_recommended_filters())
         {
             auto shared_filter = std::make_shared<filter>(f);
@@ -936,11 +947,17 @@ namespace rs2
             //if (shared_filter->is<disparity_transform>())
                // model->visible = false;
 
-            if (shared_filter->is<zero_order_invalidation>())
+            if (is_zo)
             {
-                zero_order_artifact_fix = model;
-                viewer.zo_sensors++;
+                if (shared_filter->is<zero_order_invalidation>())
+                {
+                    zero_order_artifact_fix = model;
+                    viewer.zo_sensors++;
+                }
+                else
+                    model->enabled = false;
             }
+
 
             if (shared_filter->is<hole_filling_filter>())
                 model->enabled = false;
@@ -1518,7 +1535,7 @@ namespace rs2
         try {
             s->start([&, syncer](frame f)
             {
-                if (viewer.zo_sensors.load() > 0 || (viewer.synchronization_enable && is_synchronized_frame(viewer, f)))
+                if (viewer.synchronization_enable && is_synchronized_frame(viewer, f))
                 {
                     syncer->invoke(f);
                 }
@@ -5164,21 +5181,11 @@ namespace rs2
                     });
 
                     label = to_string() << "Post-Processing##" << id;
-
                     if (ImGui::TreeNode(label.c_str()))
                     {
                         for (auto&& pb : sub->post_processing)
                         {
                             if (!pb->visible) continue;
-
-							// 20190713
-#if true 
-							if (pb->get_name() == "Decimation Filter")
-							{
-								pb->enabled = false;
-								pb->save_to_config_file();
-							}
-#endif
 
                             ImGui::SetCursorPosY(ImGui::GetCursorPosY() + 5);
 
@@ -5186,8 +5193,7 @@ namespace rs2
                             const ImVec2 abs_pos = ImGui::GetCursorScreenPos();
 
                             draw_later.push_back([windows_width, &window, sub, pos, &viewer, this, pb]() {
-                                if (!sub->streaming || !sub->post_processing_enabled) 
-									ImGui::SetCursorPos({ windows_width - 35, pos.y -3 });
+                                if (!sub->streaming || !sub->post_processing_enabled) ImGui::SetCursorPos({ windows_width - 35, pos.y -3 });
                                 else
                                     ImGui::SetCursorPos({ windows_width - 35, pos.y - 3 });
 

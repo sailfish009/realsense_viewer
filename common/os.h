@@ -4,7 +4,7 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "rendering.h"
+#include <rendering.h>
 
 struct GLFWmonitor;
 struct GLFWwindow;

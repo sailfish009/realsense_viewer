@@ -14,7 +14,7 @@ __asm__(
 #endif
     ".global "_"fw_D4XX_FW_Image_data\n"
     _"fw_D4XX_FW_Image_data:\n"
-    ".incbin \"D:/Work/librealsense/build/common/fw/D4XX_FW_Image-5.11.6.250.bin\"\n"
+    ".incbin \"D:/work/librealsense/build/common/fw/D4XX_FW_Image-5.11.6.250.bin\"\n"
     ".global "_"fw_D4XX_FW_Image_size\n"
     _"fw_D4XX_FW_Image_size:\n"
     "1:\n"

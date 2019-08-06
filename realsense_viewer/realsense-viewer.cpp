@@ -2,10 +2,10 @@
 // Copyright(c) 2017 Intel Corporation. All Rights Reserved.
 
 #include <librealsense2/rs.hpp>
-#include "../common/viewer.h"
-#include "../common/os.h"
-#include "../common/ux-window.h"
-#include "../common/fw-update-helper.h"
+#include "viewer.h"
+#include "os.h"
+#include "ux-window.h"
+#include "fw-update-helper.h"
 
 #include <cstdarg>
 #include <thread>
@@ -21,8 +21,8 @@
 #include <imgui_internal.h>
 
 #ifdef INTERNAL_FW
-#include "../common/fw/D4XX_FW_Image.h"
-#include "../common/fw/SR3XX_FW_Image.h"
+#include "fw/D4XX_FW_Image.h"
+#include "fw/SR3XX_FW_Image.h"
 #else
 #define FW_D4XX_FW_IMAGE_VERSION ""
 #define FW_SR3XX_FW_IMAGE_VERSION ""

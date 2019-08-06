@@ -12,7 +12,7 @@
 #include <regex>
 #include <cmath>
 
-#include "opengl3.h"
+#include <opengl3.h>
 
 #include "notifications.h"
 #include <imgui_internal.h>

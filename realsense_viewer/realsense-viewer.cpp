@@ -21,8 +21,8 @@
 #include <imgui_internal.h>
 
 #ifdef INTERNAL_FW
-#include "fw/D4XX_FW_Image.h"
-#include "fw/SR3XX_FW_Image.h"
+#include "./fw/D4XX_FW_Image.h"
+#include "./fw/SR3XX_FW_Image.h"
 #else
 #define FW_D4XX_FW_IMAGE_VERSION ""
 #define FW_SR3XX_FW_IMAGE_VERSION ""

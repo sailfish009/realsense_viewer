@@ -165,6 +165,7 @@
     <ClCompile Include="..\common\fw\SR3XX_FW_Image.c" />
     <ClCompile Include="..\common\model-views.cpp" />
     <ClCompile Include="..\common\notifications.cpp" />
+    <ClCompile Include="..\common\on-chip-calib.cpp" />
     <ClCompile Include="..\common\opengl3.cpp" />
     <ClCompile Include="..\common\os.cpp" />
     <ClCompile Include="..\common\rs-config.cpp" />

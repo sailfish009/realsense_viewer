@@ -14,7 +14,7 @@ __asm__(
 #endif
     ".global "_"fw_SR3XX_FW_Image_data\n"
     _"fw_SR3XX_FW_Image_data:\n"
-    ".incbin \"D:/work/librealsense/build/common/fw/SR3XX_FW_Image-3.26.1.0.bin\"\n"
+    ".incbin \"D:/build/librealsense-2.26.0/build/common/fw/SR3XX_FW_Image-3.26.1.0.bin\"\n"
     ".global "_"fw_SR3XX_FW_Image_size\n"
     _"fw_SR3XX_FW_Image_size:\n"
     "1:\n"

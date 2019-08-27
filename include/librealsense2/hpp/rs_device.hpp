@@ -226,6 +226,21 @@ namespace rs2
 
             return results;
         }
+
+        void update_unsigned(const std::vector<uint8_t>& image, int update_mode = RS2_UNSIGNED_UPDATE_MODE_UPDATE) const
+        {
+            rs2_error* e = nullptr;
+            rs2_update_firmware_unsigned_cpp(_dev.get(), image.data(), (int)image.size(), nullptr, update_mode, &e);
+            error::handle(e);
+        }
+
+        template<class T>
+        void update_unsigned(const std::vector<uint8_t>& image, T callback, int update_mode = RS2_UNSIGNED_UPDATE_MODE_UPDATE) const
+        {
+            rs2_error* e = nullptr;
+            rs2_update_firmware_unsigned_cpp(_dev.get(), image.data(), image.size(), new update_progress_callback<T>(std::move(callback)), update_mode, &e);
+            error::handle(e);
+        }
     };
 
     class update_device : public device
@@ -248,7 +263,7 @@ namespace rs2
         void update(const std::vector<uint8_t>& fw_image) const
         {
             rs2_error* e = nullptr;
-            rs2_update_firmware_cpp(_dev.get(), fw_image.data(), fw_image.size(), NULL, &e);
+            rs2_update_firmware_cpp(_dev.get(), fw_image.data(), (int)fw_image.size(), NULL, &e);
             error::handle(e);
         }
 
